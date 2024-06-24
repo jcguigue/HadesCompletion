@@ -3,6 +3,7 @@ $(document).ready(function() {
         const workbook = XLSX.read(data, {type: 'array'});
         processWorkbook(workbook);
         initializeCheckboxes(); // Initialize checkboxes after processing workbook
+        updateTotalCompletion(); // Calculate initial completion percentages
     }).catch(error => {
         console.error('Error fetching the Excel file:', error);
     });
