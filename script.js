@@ -106,7 +106,8 @@ function updateSectionCompletion(sectionIndex) {
     const checkedCheckboxes = checkboxes.filter(':checked').length;
     const totalCheckboxes = checkboxes.length;
     const sectionCompletion = ((checkedCheckboxes / totalCheckboxes) * 100).toFixed(2);
-    sectionButton.text(`${sectionButton.text().split(' ')[0]} (${sectionCompletion}%)`);
+    const sectionTitle = sectionButton.text().split(' ')[0];
+    sectionButton.text(`${sectionTitle} (${sectionCompletion}%)`);
 }
 
 function updateTotalCompletion() {
