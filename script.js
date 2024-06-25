@@ -3,7 +3,8 @@ $(document).ready(function() {
         const workbook = XLSX.read(data, {type: 'array'});
         processWorkbook(workbook);
         initializeCheckboxes(); // Initialize checkboxes after processing workbook
-        updateTotalCompletion(); // Calculate initial completion percentages
+        updateAllSectionsCompletion(); // Update section percentages
+        updateTotalCompletion(); // Calculate initial total completion percentage
     }).catch(error => {
         console.error('Error fetching the Excel file:', error);
     });
@@ -134,7 +135,12 @@ function initializeCheckboxes() {
             $(this).prop('checked', false);
         }
     });
+}
 
-    // Update completion based on initialized checkbox states
-    updateTotalCompletion();
+// Function to update all sections' completion percentages
+function updateAllSectionsCompletion() {
+    $('button.collapsible').each(function() {
+        const sectionIndex = $(this).data('section');
+        updateSectionCompletion(sectionIndex);
+    });
 }
